@@ -1,0 +1,25 @@
+<ion-view view-title="Dashboard">
+  <ion-content class="padding">
+  <script language="JavaScript" type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <h2>Weather Details App</h2>
+	<label class="item item-input">
+	  <span class="input-label">Enter your City Name, State or Zipcode</span>
+	  <input type="text">
+	</label>
+
+	<script>
+	function makePostRequest() {
+		console.log("is this coming ")
+          		this.http.post("api.openweathermap.org/data/2.5/weather?q=Minneapolis")
+        .subscribe(data => {
+			console.log("Success")
+            console.log(data)
+        }, error => {
+            console.log(JSON.stringify(error.json()));
+        });
+	</script>
+
+	<ion-content class="home">
+    	<button (click)="makePostRequest()">Weather Report</button>
+  	</ion-content>
+</ion-view>

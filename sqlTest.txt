@@ -1,0 +1,31 @@
+List all active contacts. Show customer codes, customer names, and contact names.
+
+SELECT * FROM sql_training.cu2_contact 
+JOIN sql_training.cu1_customer 
+ON sql_training.cu2_contact.CU1_ID=sql_training.cu1_customer.ID 
+WHERE sql_training.cu2_contact.DELETE_FLAG='0';
+
+
+List number of contacts by customer. Show Customer names, number of active contacts and number of deleted contacts.
+
+SELECT CU1_NAME, COUNT(CASE WHEN cu2_contact.DELETE_FLAG='0' THEN 1 END) as NumberOfActiveContacts, COUNT(CASE WHEN cu2_contact.DELETE_FLAG='1' THEN 1 END) as NumberOfInActiveContacts from cu2_contact join cu1_customer where cu2_contact.CU1_ID=cu1_customer.ID and cu1_customer.DELETE_FLAG = '0' GROUP BY CU1_NAME;
+
+List number of active customers by active users. Show User names and number of customers.
+SELECT 
+    US1_NAME, COUNT(*) as customerCount
+FROM
+    us1_user
+        JOIN
+    us2_customer_link ON us1_user.ID = us2_customer_link.US1_ID
+        JOIN
+    cu1_customer ON us2_customer_link.US1_ID = cu1_customer.ID
+WHERE
+    cu1_customer.DELETE_FLAG = '0'
+        AND us1_user.DELETE_FLAG = '0' GROUP BY US1_Name;
+
+List number of users by which year they were created. Show years, number of users, comma-separated list of user names, sorted ascending by year.
+
+SELECT EXTRACT(year from created_on), count(*) as NumberOfUsers, GROUP_CONCAT(US1_NAME SEPARATOR ',') FROM us1_user group by EXTRACT(year from created_on);
+
+
+
