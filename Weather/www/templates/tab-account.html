@@ -14,16 +14,13 @@
 		<span ng-if="weatherreport[0].weather[0].description=='broken clouds'">
 	      <img src="img/cloud.png" height="30">
 	    </span>
-	    <span ng-if="weatherreport[0].weather[0].description=='light snow'">
+	    <span ng-if="weatherreport[0].weather[0].description.includes('snow')">
 	      <img src="img/cloud-with-snow.png" height="30">
 	    </span>
-	    <span ng-if="weatherreport[0].weather[0].description=='light rain'">
+	    <span ng-if="weatherreport[0].weather[0].description.includes('rain')">
 	      <img src="img/cloud-with-rain.png" height="30">
 	    </span>
-	    <span ng-if="weatherreport[0].weather[0].description=='moderate rain'">
-	      <img src="img/cloud-with-rain.png" height="30">
-	    </span>
-	    <span ng-if="weatherreport[0].weather[0].description!='moderate rain' && weatherreport[0].weather[0].description!='broken clouds' && weatherreport[0].weather[0].description!='light rain' && weatherreport[0].weather[0].description!='light snow'">
+	    <span ng-if="weatherreport[0].weather[0].description=='clear sky'">
 	      <img src="img/sun.png" height="30">
 	    </span>
 	</div>
@@ -32,48 +29,39 @@
 	  
 		<div> {{date | date:'MM-dd-yyyy'}}</div>
 		
-			<div>{{weatherreport[0].weather[0].description}}</div>
-		
-	<p> Details</p>
-	<div class="row">
-		<div class="col">
-			<span class="detailText"> min temp</span> 
-		</div>
-		<div class="col">
-	     <span>{{weatherreport[0].temp.min | number:0}}</span>
-	     </div></div>
-	<div class="row">
-		<div class="col">
-		  <span class="detailText"> max temp</span> 
-		</div>
-		<div class="col">
-		   <span>{{weatherreport[0].temp.max | number:0}}</span>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col">
-		  <span class="detailText"> clouds</span> 
-		</div>
-		<div class="col">
-		   <span>{{weatherreport[0].clouds}}</span>
-		</div>
+	<h3> Details</h3>
+
+	<div class="row header">
+		<div class="col"> Description </div>
+		<div class="col">{{weatherreport[0].weather[0].description}}</div>
 	</div>
 
-	<div class="row">
-		<div class="col">
-
-		  <span class="detailText"> humidity</span> </div>
-		</div>
-		  <span>{{weatherreport[0].humidity}}</span>
+	<div class="row header">
+		<div class="col"> Minimum Temperature </div>
+		<div class="col">{{weatherreport[0].temp.min | number:0}}</div>
 	</div>
 
-	<div class="row">
-		<div class="col">
-	  		<span class="detailText"> speed</span> </div>
-	  	</div>
-
-	  		<span>{{weatherreport[0].speed}}</span>
+	<div class="row header">
+		<div class="col"> Maximum Temperature </div>
+		<div class="col">{{weatherreport[0].temp.max | number:0}}</div>
 	</div>
+
+	<div class="row header">
+		<div class="col"> Precipitation </div>
+		<div class="col">{{weatherreport[0].clouds}}</div>
+	</div>
+
+	<div class="row header">
+		<div class="col"> Humidity </div>
+		<div class="col">{{weatherreport[0].humidity}}</div>
+	</div>
+
+	<div class="row header">
+		<div class="col"> Speed </div>
+		<div class="col">{{weatherreport[0].speed}}</div>
+	</div>
+
+
 </div>
 	  
     </ion-list>
