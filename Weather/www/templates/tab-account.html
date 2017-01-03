@@ -1,0 +1,81 @@
+<ion-view view-title="Weather">
+
+  <ion-content>
+    <ion-list>
+	<div>
+	    <input type="text" placeholder="City Name" ng-model="cityName">
+	    <button class="button button-small button-blue" ng-click="weatherCity(cityName)">
+	      Submit
+	    </button>
+	</div>
+
+	<div class="row" style="background:#fff;padding:0px">
+	<div class="col col-25" style="padding-top:8%; text-align:right">
+		<span ng-if="weatherreport[0].weather[0].description=='broken clouds'">
+	      <img src="img/cloud.png" height="30">
+	    </span>
+	    <span ng-if="weatherreport[0].weather[0].description=='light snow'">
+	      <img src="img/cloud-with-snow.png" height="30">
+	    </span>
+	    <span ng-if="weatherreport[0].weather[0].description=='light rain'">
+	      <img src="img/cloud-with-rain.png" height="30">
+	    </span>
+	    <span ng-if="weatherreport[0].weather[0].description=='moderate rain'">
+	      <img src="img/cloud-with-rain.png" height="30">
+	    </span>
+	    <span ng-if="weatherreport[0].weather[0].description!='moderate rain' && weatherreport[0].weather[0].description!='broken clouds' && weatherreport[0].weather[0].description!='light rain' && weatherreport[0].weather[0].description!='light snow'">
+	      <img src="img/sun.png" height="30">
+	    </span>
+	</div>
+	
+	<div class="container">
+	  
+		<div> {{date | date:'MM-dd-yyyy'}}</div>
+		
+			<div>{{weatherreport[0].weather[0].description}}</div>
+		
+	<p> Details</p>
+	<div class="row">
+		<div class="col">
+			<span class="detailText"> min temp</span> 
+		</div>
+		<div class="col">
+	     <span>{{weatherreport[0].temp.min | number:0}}</span>
+	     </div></div>
+	<div class="row">
+		<div class="col">
+		  <span class="detailText"> max temp</span> 
+		</div>
+		<div class="col">
+		   <span>{{weatherreport[0].temp.max | number:0}}</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+		  <span class="detailText"> clouds</span> 
+		</div>
+		<div class="col">
+		   <span>{{weatherreport[0].clouds}}</span>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col">
+
+		  <span class="detailText"> humidity</span> </div>
+		</div>
+		  <span>{{weatherreport[0].humidity}}</span>
+	</div>
+
+	<div class="row">
+		<div class="col">
+	  		<span class="detailText"> speed</span> </div>
+	  	</div>
+
+	  		<span>{{weatherreport[0].speed}}</span>
+	</div>
+</div>
+	  
+    </ion-list>
+  </ion-content>
+</ion-view>
